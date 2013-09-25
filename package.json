@@ -1,0 +1,16 @@
+{
+  "name": "simple-lru",
+  "description": "minimal Least Recently Used Cache",
+  "author": "Tomoya Shimaguchi <smagch@gmail.com>",
+  "scripts": {
+    "test": "make test"
+  },
+  "main": "index.js",
+  "repository": "",
+  "devDependencies": {
+    "mocha": "~1",
+    "expect.js": "*",
+    "weak": "~0.2"
+  },
+  "license": "MIT"
+}
