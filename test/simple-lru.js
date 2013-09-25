@@ -1,15 +1,6 @@
 
 var expect = require('expect.js')
-var SimpleLRU
-
-if (process.env.SIMPLE_LRU_USE_OLD) {
-  var nativeCreate = Object.create
-  Object.create = undefined
-  SimpleLRU = require('../')
-  Object.create = nativeCreate
-} else {
-  SimpleLRU = require('../')
-}
+  , SimpleLRU = require('./fixtures/simple-lru')
 
 describe('SimpleLRU', function () {
 
