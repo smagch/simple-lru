@@ -221,6 +221,7 @@
      * call function in least recently used order
      * the most recently used cache will be executed last
      * @param {Function}
+     * @param {Object}
      */
     each: function (fn, context) {
       var tail = this._tail
