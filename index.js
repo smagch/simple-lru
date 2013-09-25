@@ -109,7 +109,7 @@
         return;
       }
 
-      entry = new Entry(key, val, ++this._head);
+      entry = new Entry(key, val, this._head++);
       this._byKey.set(key, entry);
       this._byOrder[entry.index] = entry;
       this._len++;
@@ -126,14 +126,17 @@
       var entry = this._byKey.del(key);
       if (!entry) return;
 
-      // update most index if it was most lecently used entry
-      if (entry.index === this._head) this._headEntry();
-
-      // update least index if it was least lecently used entry
-      if (entry.index === this._tail) this._tailEntry();
-
       delete this._byOrder[entry.index];
       this._len--;
+
+      if (this._len === 0) {
+        this._head = this._tail = 0;
+      } else {
+        // update most index if it was most lecently used entry
+        if (entry.index === this._head - 1) this._pop();
+        // update least index if it was least lecently used entry
+        if (entry.index === this._tail) this._shift();
+      }
 
       return entry.val;
     },
@@ -220,7 +223,9 @@
      * @param {Function}
      */
     each: function (fn, context) {
-      for (var i = this._tail; i <= this._head; i++) {
+      var tail = this._tail
+        , head = this._head;
+      for (var i = tail; i < head; i++) {
         var entry = this._byOrder[i];
         if (entry) fn.call(context, entry.val, entry.key);
       }
@@ -233,10 +238,12 @@
      */
     _touch: function (entry) {
       // update most number to key
-      if (entry.index !== this._head) {
+      if (entry.index !== this._head - 1) {
+        var isTail = entry.index === this._tail;
         delete this._byOrder[entry.index];
-        entry.index = ++this._head;
+        entry.index = this._head++;
         this._byOrder[entry.index] = entry;
+        if (isTail) this._shift();
       }
     },
 
@@ -245,20 +252,22 @@
      * @api private
      */
     _trim: function () {
-      while (this._max < this._len) {
-        var entry = this._tailEntry();
-        if (!entry) return;
-        this.del(entry.key);
+      var max = this._max;
+      while (max < this._len) {
+        var tailEntry = this._byOrder[this._tail];
+        this.del(tailEntry.key);
       }
     },
 
     /**
-     * return the least recently used entry
-     * @api private
+     * update tail index
      * @return {Entry|undefined}
+     * @api private
      */
-    _tailEntry: function () {
-      for (var i = this._tail; i <= this._head; i++) {
+    _shift: function () {
+      var tail = this._tail
+        , head = this._head;
+      for (var i = tail; i < head; i++) {
         var entry = this._byOrder[i];
         if (entry) {
           this._tail = i;
@@ -268,16 +277,18 @@
     },
 
     /**
-     * return the most recently used entry
-     * @api private
+     * update head index
      * @return {Entry|undefined}
+     * @api private
      */
-    _headEntry: function () {
-      for (var i = this._head; i >= this._tail; i--) {
-        var entry = this._byOrder[i];
-        if (entry) {
-          this._head = i;
-          return entry;
+    _pop: function () {
+      var tail = this._tail
+        , head = this._head;
+      for (var i = head - 1; i >= tail; i--) {
+        var headEntry = this._byOrder[i];
+        if (headEntry) {
+          this._head = i + 1;
+          return headEntry;
         }
       }
     }

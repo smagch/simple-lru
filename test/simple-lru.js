@@ -232,4 +232,94 @@ describe('SimpleLRU', function () {
      })
   })
 
+  describe('_tail', function () {
+    it('should be the least recently used index', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      cache.set('b', 'B')
+      expect(cache._tail).to.be(0)
+      cache.get('a')
+      expect(cache._tail).to.be(1)
+      cache.set('b', 'B2')
+      expect(cache._tail).to.be(2)
+      cache.del('b')
+      expect(cache._tail).to.be(2)
+    })
+
+    it('should reset to 0 when length get 0', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      cache.set('b', 'B')
+      cache.del('a')
+      cache.del('b')
+      expect(cache._tail).to.be(0)
+    })
+
+    it('should not change when its length is 1', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      expect(cache._tail).to.be(0)
+      cache.get('a')
+      expect(cache._tail).to.be(0)
+      cache.set('a', 'A2')
+      expect(cache._tail).to.be(0)
+    })
+  })
+
+  describe('_head', function () {
+    it('should be the most recently used index minus one', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      expect(cache._head).to.be(1)
+      cache.set('b', 'B')
+      expect(cache._head).to.be(2)
+      cache.get('a')
+      expect(cache._head).to.be(3)
+      cache.set('b', 'B2')
+      expect(cache._head).to.be(4)
+    })
+
+    it('should pop head index when head entry is deleted', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      cache.set('b', 'B')
+      cache.set('c', 'C')
+      expect(cache._head).to.be(3)
+      cache.del('c')
+      expect(cache._head).to.be(2)
+    })
+
+    it('should reset to 0 when length is 0', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      cache.set('b', 'B')
+      cache.set('c', 'C')
+      cache.del('a')
+      cache.del('b')
+      cache.del('c')
+      expect(cache._head).to.be(0)
+    })
+
+    it('should not change when its length is 1', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      expect(cache._head).to.be(1)
+      cache.get('a')
+      expect(cache._head).to.be(1)
+      cache.set('a', 'A2')
+      expect(cache._head).to.be(1)
+    })
+
+    it('should not change when the most recently used value is accessed', function () {
+      var cache = new SimpleLRU(5)
+      cache.set('a', 'A')
+      cache.set('b', 'B')
+      expect(cache._head).to.be(2)
+      cache.get('b')
+      expect(cache._head).to.be(2)
+      cache.set('b', 'B2')
+      expect(cache._head).to.be(2)
+    })
+  })
+
 })
