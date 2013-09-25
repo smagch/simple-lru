@@ -2,7 +2,7 @@
 MOCHA = node_modules/.bin/mocha
 
 test:
-	$(MOCHA)
-	SIMPLE_LRU_USE_OLD=true $(MOCHA)
+	$(MOCHA) --expose-gc
+	SIMPLE_LRU_USE_OLD=true $(MOCHA) --expose-gc
 
 .PHONY: test
