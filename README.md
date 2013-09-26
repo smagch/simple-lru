@@ -82,7 +82,7 @@ $ component install smagch/simple-lru
 
   Get a cache by key.
 
-### SimpleLRU#peek(key, value)
+### SimpleLRU#peek(key)
 
   Get a cache without updating recently used order.
 
