@@ -10,6 +10,8 @@
     window.SimpleLRU = SimpleLRU;
   }
 
+  SimpleLRU.version = '0.0.1';
+
   /**
    * Simple mixin utility
    * @api private

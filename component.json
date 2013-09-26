@@ -1,0 +1,11 @@
+{
+  "name": "simple-lru",
+  "version": "0.0.1",
+  "repo": "smagch/simple-lru",
+  "description": "minimal Least Recently Used Cache",
+  "keywords": ["cache", "LRU"],
+  "scripts": ["index.js"],
+  "main": "index.js",
+  "dependencies": {},
+  "license": "MIT"
+}

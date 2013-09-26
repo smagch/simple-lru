@@ -1,12 +1,14 @@
 {
   "name": "simple-lru",
   "description": "minimal Least Recently Used Cache",
+  "version": "0.0.1",
+  "keywords": ["cache", "LRU"],
   "author": "Tomoya Shimaguchi <smagch@gmail.com>",
   "scripts": {
     "test": "make test"
   },
   "main": "index.js",
-  "repository": "",
+  "repository": "git://github.com/smagch/simple-lru.git",
   "devDependencies": {
     "mocha": "~1",
     "expect.js": "*",
