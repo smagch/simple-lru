@@ -78,7 +78,12 @@
   })();
 
   /**
-   * cache entry
+   * Cache entry instance
+   *
+   * @param {String}
+   * @param {any}
+   * @param {Number}
+   * @api private
    */
   function Entry(key, val, index) {
     this.key = key;
@@ -88,6 +93,18 @@
 
   /**
    * SimpleLRU constructor
+   * It holds following private properties. See `#reset()`
+   *
+   *   _byKey    {Data}    map by key
+   *   _byOrder  {Object}  map by recently used order
+   *   _head     {Number}  index of next entry
+   *   _tail     {Number}  index of least recently used cache item
+   *   _len      {Number}  total number of cache items
+   *
+   * `_tail` is an index of the least recently used cache item.
+   * `_head` is an index of the most recently used cache item *plus* one.
+   *
+   * @param {Number} max length of cache item
    */
   function SimpleLRU(max) {
     if (typeof max !== 'number') throw new TypeError('max is requried');
@@ -104,7 +121,8 @@
      */
     set: function (key, val) {
       var entry = this._byKey.get(key);
-      // reuse entry
+
+      // reuse entry if the key exists
       if (entry) {
         this._touch(entry);
         entry.val = val;
@@ -183,7 +201,7 @@
     },
 
     /**
-     * reset all cache
+     * clear all stored cache
      */
     reset: function () {
       this._byKey = new Data();
@@ -194,7 +212,8 @@
     },
 
     /**
-     * getter|setter of "max"
+     * Getter|Setter function of "max" option
+     * @param {Number} if setter
      */
     max: function (max) {
       if (typeof max !== 'number') return this._max;
@@ -223,7 +242,8 @@
     },
 
     /**
-     * touch entry
+     * update least recently used index of an entry to "_head"
+     *
      * @param {Entry}
      * @api private
      */
