@@ -1,4 +1,4 @@
-# Simple LRU cache in JavaScript
+# Simple [LRU] cache in JavaScript
 
 The implementation is inspired by [node-lru-cache] by Isaac Schlueter. The
 motivation of this project is to provide `Object.create` fallback which IE8
@@ -33,7 +33,8 @@ var d = cache.get('d'); // d = 'D'
 var keys = cache.keys(); // keys = ['b', 'c', 'd']
 ```
 
-  Since it's using LRU cache algorithm, it removes the least recently used item.
+  Since it's using [LRU] cache algorithm, it removes the least recently used
+  item.
 
 ```js
 var cache = new LRU(3);
@@ -120,3 +121,5 @@ $ bower install simple-lru
   is smaller than its length.
 
 [node-lru-cache]: https://github.com/isaacs/node-lru-cache
+[LRU]: http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used
+
