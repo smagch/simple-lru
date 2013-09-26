@@ -1,7 +1,7 @@
 {
   "name": "simple-lru",
   "description": "minimal Least Recently Used Cache",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": ["cache", "LRU"],
   "author": "Tomoya Shimaguchi <smagch@gmail.com>",
   "scripts": {

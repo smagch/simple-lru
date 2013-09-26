@@ -1,7 +1,7 @@
 {
   "name": "simple-lru",
   "main": "index.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/smagch/simple-lru",
   "authors": [
     "smagch <smagch@gmail.com>"
