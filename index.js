@@ -205,33 +205,21 @@
     },
 
     /**
-     * return array of keys
+     * return array of keys in least recently used order
      * @return {Array}
      */
     keys: function () {
-      var i = 0
+      var count = 0
+        , tail = this._tail
+        , head = this._head
         , keys = new Array(this._len);
 
-      this.each(function (val, key) {
-        keys[i++] = key;
-      });
-
-      return keys;
-    },
-
-    /**
-     * call function in least recently used order
-     * the most recently used cache will be executed last
-     * @param {Function}
-     * @param {Object}
-     */
-    each: function (fn, context) {
-      var tail = this._tail
-        , head = this._head;
       for (var i = tail; i < head; i++) {
         var entry = this._byOrder[i];
-        if (entry) fn.call(context, entry.val, entry.key);
+        if (entry) keys[count++] = entry.key;
       }
+
+      return keys;
     },
 
     /**

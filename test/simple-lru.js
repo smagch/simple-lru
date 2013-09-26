@@ -127,24 +127,6 @@ describe('SimpleLRU', function () {
     })
   })
 
-  describe('#each', function () {
-    it('should loop through in least recently used order', function () {
-      var cache = new SimpleLRU(3)
-      cache.set('b', 'B')
-      cache.set('a', 'A')
-      cache.get('b')
-      cache.set('c', 'C')
-      var keys = ['a', 'b', 'c']
-      var values = ['A', 'B', 'C']
-      var i = 0
-      cache.each(function (val, key) {
-        expect(val).to.be(values[i])
-        expect(key).to.be(keys[i])
-        i++
-      })
-    })
-  })
-
   describe('#length', function () {
     it('should return total number of cache', function () {
       var cache = new SimpleLRU(3)
