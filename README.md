@@ -65,6 +65,12 @@ $ npm install simple-lru
 $ component install smagch/simple-lru
 ```
 
+  With [Bower](http://bower.io/)
+
+```shell
+$ bower install simple-lru
+```
+
   Or just download `index.js` manually.
 
 ## API
