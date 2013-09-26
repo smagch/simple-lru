@@ -199,7 +199,7 @@
     max: function (max) {
       if (typeof max !== 'number') return this._max;
       if (max < 1) throw new TypeError('max should be a positive number');
-      var shrink = this._max > max;
+      var shrink = (this._max || 0) > max;
       this._max = max;
       if (shrink) this._trim();
     },
