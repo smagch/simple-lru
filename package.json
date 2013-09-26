@@ -12,7 +12,8 @@
   "devDependencies": {
     "mocha": "~1",
     "expect.js": "*",
-    "weak": "~0.2"
+    "weak": "~0.2",
+    "uglify-js": "2.4.0"
   },
   "license": "MIT"
 }
