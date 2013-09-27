@@ -1,58 +1,14 @@
 # Simple [LRU] cache in JavaScript
 
 The implementation is inspired by [node-lru-cache] by Isaac Schlueter. The
-motivation of this project is to provide `Object.create` fallback which IE8
-doesn't support.
-
-## Examples
-
-  You can set any value with a string key.
-
-```js
-var cache = new LRU(3);
-cache.set('a', 'A');
-cache.set('b', {name: 'smagch'});
-cache.set('c', 1000);
-var a = cache.get('a'); // a = 'A'
-var b = cache.get('b'); // b = {name: 'smagch'}
-var c = cache.get('c'); // c = 1000
-```
-
-  It removes cache items automatically when total length get out of max.
-
-```js
-var cache = new LRU(3);
-cache.set('a', 'A');
-cache.set('b', 'B');
-cache.set('c', 'C');
-cache.set('d', 'D');
-var a = cache.get('a'); // a = undefined;
-var b = cache.get('b'); // b = 'B'
-var c = cache.get('c'); // c = 'C'
-var d = cache.get('d'); // d = 'D'
-var keys = cache.keys(); // keys = ['b', 'c', 'd']
-```
-
-  Since it's using [LRU] cache algorithm, it removes the least recently used
-  item.
-
-```js
-var cache = new LRU(3);
-cache.set('a', 'A');
-cache.set('b', 'B');
-cache.set('c', 'C');
-// Calling `get` with 'a', 'a' is the most recently used item.
-var a = cache.get('a'); // a = 'A'
-var keys = cache.keys(); // keys = ['b', 'c', 'a']
-
-cache.set('d', 'D');
-a = cache.get('a'); // a = 'A'
-var b = cache.get('b'); // b = undefined
-var c = cache.get('c'); // c = 'C'
-var d = cache.get('d'); // d = 'D'
-```
+motivation of this project is to provide `Object.create` fallback in order to
+work on IE8.
 
 ## Installation
+
+  The latest minified script can be downloaded [here].
+  Minified scripts aren't included in source. They are available on
+  [Release page].
 
   With [npm](https://npmjs.org/)
 
@@ -72,7 +28,53 @@ $ component install smagch/simple-lru
 $ bower install simple-lru
 ```
 
-  Or just download `index.js` manually.
+## Examples
+
+  You can set any value with a string key.
+
+```js
+var cache = new SimpleLRU(3);
+cache.set('a', 'A');
+cache.set('b', {name: 'smagch'});
+cache.set('c', 1000);
+var a = cache.get('a'); // a = 'A'
+var b = cache.get('b'); // b = {name: 'smagch'}
+var c = cache.get('c'); // c = 1000
+```
+
+  It removes cache items automatically when total length get out of max.
+
+```js
+var cache = new SimpleLRU(3);
+cache.set('a', 'A');
+cache.set('b', 'B');
+cache.set('c', 'C');
+cache.set('d', 'D');
+var a = cache.get('a'); // a = undefined;
+var b = cache.get('b'); // b = 'B'
+var c = cache.get('c'); // c = 'C'
+var d = cache.get('d'); // d = 'D'
+var keys = cache.keys(); // keys = ['b', 'c', 'd']
+```
+
+  Since it's using [LRU] cache algorithm, it removes the least recently used
+  item.
+
+```js
+var cache = new SimpleLRU(3);
+cache.set('a', 'A');
+cache.set('b', 'B');
+cache.set('c', 'C');
+// Calling `get` with 'a', 'a' is the most recently used item.
+var a = cache.get('a'); // a = 'A'
+var keys = cache.keys(); // keys = ['b', 'c', 'a']
+
+cache.set('d', 'D');
+a = cache.get('a'); // a = 'A'
+var b = cache.get('b'); // b = undefined
+var c = cache.get('c'); // c = 'C'
+var d = cache.get('d'); // d = 'D'
+```
 
 ## API
 
@@ -120,6 +122,12 @@ $ bower install simple-lru
   change `max` option with an argument. It will trim cache when new `max` option
   is smaller than its length.
 
+## License
+
+  MIT
+
 [node-lru-cache]: https://github.com/isaacs/node-lru-cache
 [LRU]: http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used
-
+[index.js]: https://raw.github.com/smagch/simple-lru/master/index.js
+[here]: https://github.com/smagch/simple-lru/releases/download/0.0.2/simple-lru.min.js
+[Release page]: https://github.com/smagch/simple-lru/releases
