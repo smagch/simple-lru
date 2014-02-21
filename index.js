@@ -2,15 +2,19 @@
   'use strict';
 
   /**
-   * export SimpleLRU for CommonJS
+   * export SimpleLRU for CommonJS, AMD
    */
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof define !== "undefined" && define !== null ? define.amd : void 0) {
+    define(function () {
+      return SimpleLRU;
+    });
+  } else if (typeof module !== 'undefined' && module.exports) {
     module.exports = SimpleLRU;
   } else if (typeof window !== 'undefined') {
     window.SimpleLRU = SimpleLRU;
   }
 
-  SimpleLRU.version = '0.0.2';
+  SimpleLRU.version = '0.0.3';
 
   /**
    * Simple mixin utility
