@@ -1,5 +1,7 @@
 # Simple [LRU] cache in JavaScript
 
+[![browser support](https://ci.testling.com/smagch/simple-lru.png)](https://ci.testling.com/smagch/simple-lru)
+
 The implementation is inspired by [node-lru-cache] by Isaac Schlueter. The
 motivation of this project is to provide `Object.create` fallback in order to
 work on IE8.
