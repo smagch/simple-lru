@@ -13,7 +13,8 @@
     "mocha": "~1.18",
     "expect.js": "~0.3",
     "weak": "~0.3",
-    "uglify-js": "2.4.13"
+    "uglify-js": "2.4.13",
+    "requirejs": "~2.1.11"
   },
   "testling": {
     "harness": "mocha",

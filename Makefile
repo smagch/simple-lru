@@ -1,24 +1,35 @@
-
 MOCHA = node_modules/.bin/mocha
 UGLIFYJS = node_modules/.bin/uglifyjs
 RELEASE = simple-lru.min.js
+TEST_PREFIXES = $(wildcard test/fixtures/prefix*)
+TESTS = $(patsubst test/fixtures/prefix-%.js, \
+                   test/simple-lru-%.js, \
+                   $(TEST_PREFIXES))
 
-testall: minify
-	$(MOCHA) --expose-gc
-	SIMPLE_LRU_USE_OLD=true $(MOCHA) --expose-gc
-	SIMPLE_LRU_TARGET=$(RELEASE) $(MOCHA) --expose-gc
-	SIMPLE_LRU_TARGET=$(RELEASE) SIMPLE_LRU_USE_OLD=true $(MOCHA) --expose-gc
+build: $(RELEASE) $(TESTS)
 
-test:
-	$(MOCHA) --expose-gc
+# run mocha tests
+#   simple-lru-node       test vanilla simple-lru.
+#   simple-lru-node-min   test minified simple-lru.
+#   simple-lru-node-old   test simple-lru with old environment that doesn't have
+#                         `Object.create` method.
+test: build
+	$(MOCHA) --expose-gc \
+           test/simple-lru-node.js \
+           test/simple-lru-node-min.js \
+           test/simple-lru-node-old.js \
+           test/leak.js
 
-minify: $(RELEASE)
+# concatenate mocha test and prefix scripts that does requiring
+$(TESTS): test/simple-lru-%: test/fixtures/prefix-%
+	@cat $< test/fixtures/base.js > $@
 
-$(RELEASE): index.js
+# minification
+$(RELEASE): simple-lru.js
 	$(UGLIFYJS) --mangle --reserved 'module' $< -o $@
 	@echo 'minify done $@'
 
 clean:
-	rm -f $(RELEASE)
+	rm -f $(RELEASE) $(TESTS)
 
-.PHONY: test minify clean
+.PHONY: test clean build

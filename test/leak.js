@@ -1,7 +1,7 @@
 
 var expect = require('expect.js')
   , weak = require('weak')
-  , SimpleLRU = require('./fixtures/simple-lru')
+  , SimpleLRU = require('../simple-lru')
 
 describe('momeory leak', function () {
   var ref = 0

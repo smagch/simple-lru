@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleLRU Mocha Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../node_modules/requirejs/require.js"></script>
+    <script>
+      require.config({
+        paths: {
+          'mocha': '../node_modules/mocha/mocha',
+          'expect': '../node_modules/expect.js/index',
+          'simple-lru': '../simple-lru',
+          'test': './simple-lru-amd'
+        },
+        shim: {
+          mocha: {
+            exports: 'mocha',
+            init: function () {
+              this.mocha.setup('bdd');
+              return this.mocha;
+            }
+          },
+          expect: {
+            exports: 'expect'
+          },
+          test: {
+            deps: ['mocha', 'expect', 'simple-lru'],
+            exports: 'mocha'
+          }
+        }
+      });
+
+      require(['test'], function (mocha) {
+        mocha.run();
+      });
+
+    </script>
+  </body>
+</html>

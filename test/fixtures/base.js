@@ -1,7 +1,4 @@
 
-var expect = require('expect.js')
-  , SimpleLRU = require('./fixtures/simple-lru')
-
 describe('SimpleLRU', function () {
 
   describe('#set', function () {
