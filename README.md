@@ -8,10 +8,6 @@ work on IE8.
 
 ## Installation
 
-  The latest minified script can be downloaded [here].
-  Minified scripts aren't included in source. They are available on
-  [Release page].
-
   With [npm](https://npmjs.org/)
 
 ```shell
@@ -29,6 +25,8 @@ $ component install smagch/simple-lru
 ```shell
 $ bower install simple-lru
 ```
+
+  Or download [tarball](https://github.com/smagch/simple-lru/archive/master.zip).
 
 ## Examples
 
@@ -131,5 +129,4 @@ var d = cache.get('d'); // d = 'D'
 [node-lru-cache]: https://github.com/isaacs/node-lru-cache
 [LRU]: http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used
 [index.js]: https://raw.github.com/smagch/simple-lru/master/index.js
-[here]: https://github.com/smagch/simple-lru/releases/download/0.0.2/simple-lru.min.js
 [Release page]: https://github.com/smagch/simple-lru/releases
