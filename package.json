@@ -10,10 +10,10 @@
   "main": "index.js",
   "repository": "git://github.com/smagch/simple-lru.git",
   "devDependencies": {
-    "mocha": "~1",
-    "expect.js": "*",
-    "weak": "~0.2",
-    "uglify-js": "2.4.0"
+    "mocha": "~1.18",
+    "expect.js": "~0.3",
+    "weak": "~0.3",
+    "uglify-js": "2.4.13"
   },
   "license": "MIT"
 }
