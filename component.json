@@ -4,8 +4,8 @@
   "repo": "smagch/simple-lru",
   "description": "minimal Least Recently Used Cache",
   "keywords": ["cache", "LRU"],
-  "scripts": ["index.js"],
-  "main": "index.js",
+  "scripts": ["simple-lru.js"],
+  "main": "simple-lru.js",
   "dependencies": {},
   "license": "MIT"
 }

@@ -1,6 +1,6 @@
 {
   "name": "simple-lru",
-  "main": "index.js",
+  "main": "simple-lru.js",
   "version": "0.0.3",
   "homepage": "https://github.com/smagch/simple-lru",
   "authors": [
@@ -11,8 +11,5 @@
     "cache",
     "LRU"
   ],
-  "license": "MIT",
-  "ignore": [
-    "test"
-  ]
+  "license": "MIT"
 }

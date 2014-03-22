@@ -7,7 +7,7 @@
   "scripts": {
     "test": "make test"
   },
-  "main": "index.js",
+  "main": "simple-lru.js",
   "repository": "git://github.com/smagch/simple-lru.git",
   "devDependencies": {
     "mocha": "~1.18",
