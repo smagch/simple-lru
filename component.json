@@ -1,6 +1,6 @@
 {
   "name": "simple-lru",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repo": "smagch/simple-lru",
   "description": "minimal Least Recently Used Cache",
   "keywords": ["cache", "LRU"],
